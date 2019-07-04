@@ -21,7 +21,7 @@ module.exports.run = async (bot, message, args) => {
     .addField("Date", message.createdAt)
     .addField("Raison", kReason);
 
-    let kickchannel = message.guild.channels.find(x => x.name === "modération");
+    let kickchannel = message.guild.channels.find(x => x.name === "logs");
     if (!kickchannel) return message.channel.send("Je n'ai pas pu trouver le channel de modération (adm error)");
 
     message.guild.member(kUser).kick(kReason);

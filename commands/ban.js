@@ -20,7 +20,7 @@ module.exports.run = async (bot, message, args) => {
     .addField("Date", message.createdAt)
     .addField("Raison", bReason);
 
-    let banchannel = message.guild.channels.find(x => x.name === "modération");
+    let banchannel = message.guild.channels.find(x => x.name === "logs");
     if (!banchannel) return message.channel.send("Je n'ai pas pu trouver le channel de modération (adm error)");
 
     message.guild.member(bUser).ban(bReason);

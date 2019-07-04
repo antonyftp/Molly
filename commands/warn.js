@@ -29,7 +29,7 @@ module.exports.run = async (bot, message, args) => {
         .addField("Nombre de warns", warns[wUser.id].warns)
         .addField("Raison", reason);
 
-    let warnchannel = message.guild.channels.find(x => x.name === "modération");
+    let warnchannel = message.guild.channels.find(x => x.name === "logs");
     if (!warnchannel) return message.reply("Je n'ai pas pu trouver le channel de modération (adm error)");
 
     warnchannel.send(warnEmbed);
