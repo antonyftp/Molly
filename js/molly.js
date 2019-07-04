@@ -56,7 +56,7 @@ bot.on("guildMemberAdd", member  =>{
 });
 
 bot.on('guildMemberAdd', member => {
-  const welcomechannel = member.guild.channels.find('id', '513053941567717429')
+  const welcomechannel = member.guild.channels.find('id', '513053941567717429');
 
   var newuserjoinembed = new Discord.RichEmbed()
     .setColor('00FF00')
@@ -75,7 +75,7 @@ bot.on('guildMemberRemove', member => {
     .setAuthor(member.user.tag + ' a quitté le serveur', member.user.displayAvatarURL)
     .addField(`:outbox_tray: ${member.user.tag}`)
     .setFooter(`User left`)
-    .setTimestamp();;
+    .setTimestamp();
     return goodbyechannel.send(newuserjoinembed);
 });
 
@@ -113,12 +113,12 @@ bot.on('raw', event => {
         let message = channel.fetchMessage(event.d.message_id).then(msg=> {
         let user = msg.guild.members.get(event.d.user_id);
 
-        if (msg.author.id == bot.user.id && msg.content != initialMessage){
+        if (msg.author.id === bot.user.id && msg.content !== initialMessage){
 
             var re = `\\*\\*"(.+)?(?="\\*\\*)`;
             var role = msg.content.match(re)[1];
 
-            if (user.id != bot.user.id){
+            if (user.id !== bot.user.id){
                 var roleObj = msg.guild.roles.find('name', role);
                 var memberObj = msg.guild.members.get(user.id);
 
