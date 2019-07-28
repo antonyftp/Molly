@@ -51,7 +51,7 @@ bot.on("message", async message => {
 
 bot.on("guildMemberAdd", member  =>{
    let membre = member.guild.roles.find('name', 'Membre');
-   bot.channels.find('id', '462017313516945448').send(`Bienvenue <@${member.id}> sur le discord francophone du jeu Deep Rock Galactic !\n\nPense à lire le channel <#580824056702697498> ainsi que le channel <#580825741021806602>.\nPense également à t'attribuer tes rôles dans le channel <#462222791022739456>.`);
+   bot.channels.find('id', '462017313516945448').send(`Bienvenue <@${member.id}> sur le discord francophone du jeu Deep Rock Galactic !\nPense à lire les channels <#580824056702697498> et <#580825741021806602> ainsi qu'à t'attribuer tes rôles dans le channel <#462222791022739456>.`);
    member.addRole(membre);
 });
 
