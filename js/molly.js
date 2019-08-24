@@ -33,6 +33,14 @@ fs.readdir("./commands/", (err, files) => {
 bot.on('ready', () => {
 
     console.log(`Molly> Lancé avec succès. Sur ${bot.guilds.size} serveur(s) avec ${bot.users.size} user(s)`)
+
+    bot.user.setPresence({
+        status: "online",
+        game: {
+            name: "retourner au drop pod",
+            type: "PLAYING",
+        }
+    })
 });
 
 bot.on("message", async message => {
@@ -57,7 +65,6 @@ bot.on("guildMemberAdd", member  =>{
 });
 
 bot.on('guildMemberAdd', member => {
-  //const welcomechannel = member.guild.channels.find('id', '513053941567717429');
     const welcomechannel = member.guild.channels.find(x => x.id === '513053941567717429');
 
   var newuserjoinembed = new Discord.RichEmbed()
@@ -70,7 +77,6 @@ bot.on('guildMemberAdd', member => {
 });
 
 bot.on('guildMemberRemove', member => {
-  //const goodbyechannel = member.guild.channels.find('id', '513053941567717429');
     const goodbyechannel = member.guild.channels.find(x => x.id === '513053941567717429');
 
   var newuserjoinembed = new Discord.RichEmbed()
