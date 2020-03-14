@@ -15,8 +15,9 @@
     "type": "git",
     "url": "git+https://github.com/antonyftp/Molly.git"
   },
-  "author": "",
-  "license": "ISC",
+  "scripts": {
+    "start": "node js/molly.js"
+  },
   "bugs": {
     "url": "https://github.com/antonyftp/Molly/issues"
   },
