@@ -5,6 +5,7 @@
 
 const { Client, Collection } = require("discord.js");
 const { config } = require("dotenv");
+const token = require("./token");
 
 const client = new Client({
     disableEveryone: true
@@ -27,7 +28,7 @@ client.on("ready", () => {
     client.user.setPresence({
         status: "online",
         game: {
-            name: "retourner au drop pod",
+            name: "V2 en cours de développement",
             type: "PLAYING"
         }
     })
@@ -97,4 +98,4 @@ client.on('guildMemberRemove', member => {
     return goodbyechannel.send(newuserjoinembed);
 });
 
-client.login(process.env.TOKEN);
+client.login(token.token);
