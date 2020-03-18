@@ -18,7 +18,7 @@
   "homepage": "https://github.com/antonyftp/Molly-V2#readme",
   "dependencies": {
     "ascii-table": "0.0.9",
-    "discord.js": "^11.5.1",
+    "discord.js": "^11.6.2",
     "dotenv": "^8.1.0"
   }
 }
