@@ -1,0 +1,24 @@
+{
+  "name": "molly",
+  "version": "1.0.0",
+  "description": "Bot discord pour le serveur Deep Rock Galactic - France",
+  "main": "js/molly.js",
+  "scripts": {
+    "start": "node js/molly.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/antonyftp/Molly.git"
+  },
+  "author": "Antony Fantapié",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/antonyftp/Molly/issues"
+  },
+  "homepage": "https://github.com/antonyftp/Molly#readme",
+  "dependencies": {
+    "discord.js": "^12.0.2",
+    "mysql": "^2.18.1"
+  }
+}
