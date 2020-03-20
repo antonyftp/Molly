@@ -1,5 +1,7 @@
 {
     "bot": {
-        "status" : "revenir au drop pod"
+        "status" : "revenir au drop pod",
+        "modLogChannel" : "mod-logs",
+        "prefix" : "!"
     }
 }
