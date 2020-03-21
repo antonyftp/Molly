@@ -9,3 +9,4 @@ node_modules
 # JSON FILES #
 
 json/token.json
+json/database.json
