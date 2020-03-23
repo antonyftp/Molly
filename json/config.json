@@ -1,7 +1,10 @@
 {
     "bot": {
         "status" : "revenir au drop pod",
-        "modLogChannel" : "mod-logs",
         "prefix" : "!"
+    },
+    "discord": {
+        "welcomeChannelID": "691699716513071164",
+        "modlogChannelID" : "689209514863624235"
     }
 }

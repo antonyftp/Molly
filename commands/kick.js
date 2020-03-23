@@ -21,7 +21,7 @@ exports.run = async (bot, message, args) => {
         .addField("Date", message.createdAt)
         .addField("Raison", kReason);
 
-    let kickchannel = bot.channels.cache.find(x => x.name === config.bot.modLogChannel);
+    let kickchannel = bot.channels.cache.find(x => x.id === config.discord.modlogChannelID);
     if (!kickchannel) return message.channel.send("Je n'ai pas pu trouver le channel de modération (adm error)");
 
     message.guild.member(kUser).kick(kReason);

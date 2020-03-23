@@ -1,4 +1,6 @@
 const Discord = require("discord.js");
+const config = require("../json/config");
+const mollydb = require("../js/mollydb");
 
 exports.run = (bot, message, args) => {
     let bUser = message.guild.member(message.mentions.users.first() || message.guild.members.get(args[0]));
@@ -19,13 +21,16 @@ exports.run = (bot, message, args) => {
         .addField("Date", message.createdAt)
         .addField("Raison", bReason);
 
-    let banchannel = bot.channels.cache.find(x => x.name === "mod-logs");
+    let banchannel = bot.channels.cache.find(x => x.id === config.discord.modlogChannelID);
     if (!banchannel) return message.channel.send("Je n'ai pas pu trouver le channel de modération (adm error)");
 
     message.guild.member(bUser).ban({reason: bReason}).then(r => function () {
-        console.log(`${bUser.displayName} succesfully banned !`);
+        mollydb.query(`UPDATE sys.members SET isBan = 1 where discordID = ${bUser.id}`, function (result, err) {
+            if (err) throw err;
+            console.log(`${bUser.displayName} succesfully banned from the discord`);
+        })
     });
     message.delete();
 
     banchannel.send(banEmbed);
-}
+};
