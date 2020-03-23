@@ -32,3 +32,5 @@ After that you have to create the files "token.json" and "database.json" in the 
     "database": "your_database"
 }
 ```
+
+Once this is done, the bot will automatically configure the database and create the required tables. The bot will then launch and will be 100% operational!
