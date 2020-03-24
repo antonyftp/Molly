@@ -24,12 +24,7 @@ exports.run = (bot, message, args) => {
     let banchannel = bot.channels.cache.find(x => x.id === config.discord.modlogChannelID);
     if (!banchannel) return message.channel.send("Je n'ai pas pu trouver le channel de modération (adm error)");
 
-    message.guild.member(bUser).ban({reason: bReason}).then(r => function () {
-        mollydb.query(`UPDATE sys.members SET isBan = 1 where discordID = ${bUser.id}`, function (result, err) {
-            if (err) throw err;
-            console.log(`${bUser.displayName} succesfully banned from the discord`);
-        })
-    });
+    message.guild.member(bUser).ban({reason: bReason}).then(() => console.log(`${bUser.displayName} has been banned from the discord`));
     message.delete();
 
     banchannel.send(banEmbed);

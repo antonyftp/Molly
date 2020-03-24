@@ -14,5 +14,8 @@ exports.run = (bot, message) => {
                 });
             }
         });
+        if (!member.roles.cache.has('689209127536164901')) {
+            member.roles.add(member.guild.roles.cache.find(x => x.name === "Membre")).then(r => console.log(`[SYNC BDD] ${member.displayName} got his member role back`));
+        }
     });
 };
