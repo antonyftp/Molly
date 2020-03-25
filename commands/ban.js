@@ -1,9 +1,8 @@
 const Discord = require("discord.js");
 const config = require("../json/config");
-const mollydb = require("../js/mollydb");
 
 exports.run = (bot, message, args) => {
-    let bUser = message.guild.member(message.mentions.users.first() || message.guild.members.get(args[0]));
+    let bUser = message.guild.member(message.mentions.users.first());
     if (!bUser) return message.channel.send("Je n'ai pas trouvé l'utilisateur");
     let bReason = args.join(" ").slice(22);
     if (!message.member.hasPermission("BAN_MEMBERS")) return message.channel.send("Permission refusée");

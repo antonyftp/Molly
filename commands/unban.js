@@ -1,5 +1,6 @@
 const Discord = require("discord.js");
-const config = require("json/config");
+const config = require("../json/config");
+const mollydb = require("../js/mollydb");
 
 exports.run = (bot, message, args) => {
     let ubUser = message.guild.member(message.mentions.users.first());
@@ -19,7 +20,11 @@ exports.run = (bot, message, args) => {
     let unbanchannel = bot.channels.cache.find(x => x.id === config.discord.modlogChannelID);
     if (!unbanchannel) return message.channel.send("Je n'ai pas pu trouver le channel de modération (adm error)");
 
-    message.guild.members.unban(ubUser).then(r => console.log(`${ubUser.displayName} has been unbanned from the discord`));
+    mollydb.query(`UPDATE sys.members SET isBan = 0, unbanTimestamp = null, modWhoBan = null where discordID = ${ubUser.id}`, function (err) {
+        if (err) throw err;
+        message.guild.members.unban(ubUser).then(r => console.log(`${ubUser.displayName} has been unbanned from the discord`));
+    });
+
     message.delete();
 
     unbanchannel.send(unbanEmbed);
