@@ -3,6 +3,7 @@ const config = require("../json/config");
 const mollydb = require("../js/mollydb");
 
 exports.run = (bot, message) => {
+    if (!message.member.hasPermission("ADMINISTRATOR")) return message.channel.send("Cette commande est reservée aux administrateurs");
     message.guild.members.cache.forEach(member => {
         mollydb.query(`SELECT COUNT(discordID) as total from sys.members where discordID = '${member.id}'`, function (err, result) {
             if (err) throw err;

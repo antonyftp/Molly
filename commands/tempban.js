@@ -35,15 +35,13 @@ exports.run = async (bot, message, args) => {
     let tbanchannel = bot.channels.cache.find(x => x.id === config.discord.modlogChannelID);
     if (!tbanchannel) return message.channel.send("Je n'ai pas pu trouver le channel de modération (adm error)");
 
-    await mollydb.query(`UPDATE sys.members SET isBAN = 1, unbanTimestamp = ${Date.now() + (timebanint * 86400000)}, modWhoban = '${message.author.tag}' where discordID = ${tbUser.id}`, function (err, result) {
+    await mollydb.query(`UPDATE sys.members SET isBAN = 1, unbanTimestamp = ${Date.now() + (timebanint * 30000/*3600000*/)}, modWhoban = '${message.author.tag}' where discordID = ${tbUser.id}`, function (err, result) {
         if (err) throw err;
     });
-    message.guild.member(tbUser).ban({reason: tbReason}).then(() => {
-        console.log(`${tbUser.displayName} has been tempbanned from the discord for a duration of ${timeban} days !`);
-    });
+    message.guild.member(tbUser).ban({reason: tbReason}).then(r => console.log(`${tbUser.displayName} has been tempbanned from the discord for a duration of ${timeban} days !`));
 
     message.delete();
     await tbanchannel.send(tbanEmbed);
 
-    unban.function(tbUser, message);
+    unban.function(tbUser);
 };
