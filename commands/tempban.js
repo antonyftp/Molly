@@ -2,8 +2,10 @@ const Discord = require("discord.js");
 const config = require("../json/config");
 const mollydb = require("../js/mollydb");
 const unban = require("./utils/untempban");
+const { Worker } = require("worker_threads");
+const worker = new Worker('./commands/utils/untempban.js', { type: "module" });
 
-exports.run = async (bot, message, args) => {
+exports.run = async (bot, message) => {
     // Find user to ban //
     let tbUser = message.guild.member(message.mentions.users.first());
     if (!tbUser) return message.channel.send("Je n'ai pas trouvé l'utilisateur");
@@ -43,5 +45,5 @@ exports.run = async (bot, message, args) => {
     message.delete();
     await tbanchannel.send(tbanEmbed);
 
-    unban.function(tbUser);
+    worker.on("message", () => unban.untempban(tbUser));
 };

@@ -1,5 +1,7 @@
 var mollydb = require("../js/mollydb");
 const runban = require("../commands/utils/runtempban");
+const { Worker } = require("worker_threads");
+const worker = new Worker('./commands/utils/untempban.js', { type: "module" });
 
 module.exports = (client) => {
     console.log("Ready to go !");
@@ -21,7 +23,7 @@ module.exports = (client) => {
                 if (err) throw err;
                 if (result[0].total == 1) {
                     console.log(`[START] Unban procedure restarted for ${banuser.user.username}`);
-                    runban.function(banuser, client);
+                    runban.runtempban(banuser, client);
                 }
             })
         })

@@ -1,7 +1,7 @@
 const mollydb = require("../../js/mollydb");
 
 module.exports = {
-    async function (tbUser) {
+    untempban(tbUser) {
         let time = Date.now();
         mollydb.query(`SELECT unbanTimestamp as unbanTmstp FROM sys.members where discordID = ${tbUser.id}`, function (err, result) {
             if (err) throw err;
