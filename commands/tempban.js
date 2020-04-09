@@ -2,8 +2,7 @@ const Discord = require("discord.js");
 const config = require("../json/config");
 const mollydb = require("../js/mollydb");
 const unban = require("./utils/untempban");
-const { Worker } = require("worker_threads");
-const worker = new Worker('./commands/utils/untempban.js', { type: "module" });
+const { useWorker } = require("./utils/worker");
 
 exports.run = async (bot, message) => {
     // Find user to ban //
@@ -40,10 +39,11 @@ exports.run = async (bot, message) => {
     await mollydb.query(`UPDATE sys.members SET isBAN = 1, unbanTimestamp = ${Date.now() + (timebanint * 30000/*3600000*/)}, modWhoban = '${message.author.tag}' where discordID = ${tbUser.id}`, function (err, result) {
         if (err) throw err;
     });
-    message.guild.member(tbUser).ban({reason: tbReason}).then(r => console.log(`${tbUser.displayName} has been tempbanned from the discord for a duration of ${timeban} days !`));
+    //message.guild.member(tbUser).ban({reason: tbReason}).then(r => console.log(`${tbUser.displayName} has been tempbanned from the discord for a duration of ${timeban} days !`));
+    console.log(`${tbUser.displayName} has been tempbanned from the discord for a duration of ${timeban} days !`);
 
     message.delete();
     await tbanchannel.send(tbanEmbed);
 
-    worker.on("message", () => unban.untempban(tbUser));
+   unban.untempban(tbUser);
 };
