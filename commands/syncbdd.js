@@ -17,6 +17,9 @@ exports.run = (bot, message) => {
         });
         if (!member.roles.cache.has('689209127536164901')) {
             member.roles.add(member.guild.roles.cache.find(x => x.name === "Membre")).then(r => console.log(`[SYNC BDD] ${member.displayName} got his member role back`));
+            member.roles.add(member.guild.roles.cache.find(x => x.name === "==== Grade communautaire ====")).then(r => console.log(`[SYNC BDD] ${member.displayName} got his communitySpacer role back`));
+            member.roles.add(member.guild.roles.cache.find(x => x.name === "======== Plateforme ========")).then(r => console.log(`[SYNC BDD] ${member.displayName} got his platformSpacer role back`));
+            member.roles.add(member.guild.roles.cache.find(x => x.name === "========= Classes =========")).then(r => console.log(`[SYNC BDD] ${member.displayName} got his classesSpacer role back`));
         }
     });
 };

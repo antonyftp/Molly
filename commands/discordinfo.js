@@ -6,7 +6,6 @@ exports.run = (bot, message) => {
     const embed = new Discord.MessageEmbed()
         .setTitle(`Informations du discord`)
         .setFooter(message.member.displayName, message.member.user.displayAvatarURL())
-        //.setThumbnail(bot.guilds.cache.find(x => x.id === config.discord.id).)
         .setColor("BLUE")
 
         .addField("**Nom**", bot.guilds.cache.find(x => x.id === config.discord.id).name, true)
