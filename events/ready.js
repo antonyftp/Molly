@@ -11,7 +11,7 @@ module.exports = (client) => {
             type: "PLAYING",
         }
     })
-    client.guilds.cache.find(x => x.id = '688713802333552672').members.cache.forEach(member => {
+    client.guilds.cache.find(x => x.id = '461941319787610122').members.cache.forEach(member => {
         if (!member.roles.cache.has(config.discord.defaultRoles.member))
             member.roles.add(member.guild.roles.cache.find(x => x.name === "Membre")).then(r => console.log(`[Start] ${member.displayName} got his member role back`));
         if (!member.roles.cache.has(config.discord.defaultRoles.communitySpacer)) {
@@ -24,7 +24,7 @@ module.exports = (client) => {
             member.roles.add(member.guild.roles.cache.find(x => x.name === "========= Classes =========")).then(r => console.log(`[Start] ${member.displayName} got his classe spacer role back`));
         }
     })
-    client.guilds.cache.find(x => x.id === '688713802333552672').fetchBans().then(bans => {
+    client.guilds.cache.find(x => x.id === '461941319787610122').fetchBans().then(bans => {
         bans.array().forEach(banuser => {
             mollydb.query(`SELECT COUNT(*) as total from sys.members where discordID = ${banuser.user.id} and isBan = 1 and unbanTimestamp <> 0`, function (err, result) {
                 if (err) throw err;

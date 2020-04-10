@@ -10,7 +10,7 @@ exports.run = (bot, message, args) => {
         .map(r => r).join("\n") || "none";
     const created = formatDate(member.user.createdAt);
     let date = null;
-    mollydb.query(`SELECT lastConnected as lastDate FROM sys.members where discordID = ${message.member.id}`, function (err, result) {
+    mollydb.query(`SELECT lastConnected as lastDate FROM discord where discordID = ${message.member.id}`, function (err, result) {
         const embed = new Discord.MessageEmbed()
             .setTitle(`Info ${member.user.username}`)
             .setFooter(member.displayName, member.user.displayAvatarURL())
