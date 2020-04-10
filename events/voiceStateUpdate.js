@@ -29,7 +29,7 @@ module.exports = async (client, oldState, newState) => {
         }
     } else if (oldState.channel && newState.channel) {
         let date = new Date().toISOString().replace(/T/, ' ').replace(/\..+/, '');
-        mollydb.query(`UPDATE discord SET lastConnected = '${date}' WHERE discordID = ${newState.id}`, function (err) {
+        mollydb.query(`UPDATE discord.members SET lastConnected = '${date}' WHERE discordID = ${newState.id}`, function (err) {
             if (err) throw err;
         });
         switch (newState.channel.id) {
