@@ -26,7 +26,7 @@ module.exports = (client) => {
     })
     client.guilds.cache.find(x => x.id === '461941319787610122').fetchBans().then(bans => {
         bans.array().forEach(banuser => {
-            mollydb.query(`SELECT COUNT(*) as total from discord where discordID = ${banuser.user.id} and isBan = 1 and unbanTimestamp <> 0`, function (err, result) {
+            mollydb.query(`SELECT COUNT(*) as total from discord.members where discordID = ${banuser.user.id} and isBan = 1 and unbanTimestamp <> 0`, function (err, result) {
                 if (err) throw err;
                 if (result[0].total == 1) {
                     console.log(`[START] Unban procedure restarted for ${banuser.user.username}`);
