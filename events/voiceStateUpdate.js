@@ -5,7 +5,7 @@ const utils = require("./utils/voiceStateUpdate.utils")
 module.exports = async (client, oldState, newState) => {
     if (!oldState.channel && newState.channel) {
         let date = new Date().toISOString().replace(/T/, ' ').replace(/\..+/, '');
-        mollydb.query(`UPDATE sys.members SET lastConnected = '${date}' WHERE discordID = ${newState.id}`, function (err) {
+        mollydb.query(`UPDATE discord.members SET lastConnected = '${date}' WHERE discordID = ${newState.id}`, function (err) {
             if (err) throw err;
         });
         switch (newState.channel.id) {
