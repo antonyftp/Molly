@@ -1,7 +1,8 @@
 {
     "bot": {
         "status" : "revenir au drop pod",
-        "prefix" : "!"
+        "prefix" : "!",
+        "id": "688720056477417523"
     },
     "discord": {
         "id" : "688713802333552672",
