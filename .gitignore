@@ -1,2 +1,12 @@
+# IDEA FILES #
+
 .idea
-token.json
+
+# NODE MODULE FILES #
+
+node_modules
+
+# JSON FILES #
+
+json/token.json
+json/database.json

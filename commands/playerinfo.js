@@ -1,27 +1,31 @@
 const Discord = require("discord.js");
+const { getMember, formatDate } = require("./utils/playerinfo.utils");
+const mollydb = require("../js/mollydb");
 
-module.exports.run = async (bot, message, args) => {
+exports.run = (bot, message, args) => {
+    const member = getMember(message, args.join(" "));
+    const joined = formatDate(member.joinedAt);
+    const roles = member.roles.cache
+        .filter(r => r.id !== message.guild.id)
+        .map(r => r).join("\n") || "none";
+    const created = formatDate(member.user.createdAt);
+    let date = null;
+    mollydb.query(`SELECT lastConnected as lastDate FROM sys.members where discordID = ${message.member.id}`, function (err, result) {
+        const embed = new Discord.MessageEmbed()
+            .setTitle(`Info ${member.user.username}`)
+            .setFooter(member.displayName, member.user.displayAvatarURL())
+            .setThumbnail(member.user.displayAvatarURL())
+            .setColor(member.displayHexColor === "#000000" ? "#ffffff" : member.displayHexColor)
 
-    let iUser = message.guild.member(message.mentions.users.first() || message.guild.members.get(args[0]));
-    if (!iUser) return message.channel.send("Je n'ai pas trouvé l'utilisateur");
+            .addField('Nom', member.displayName, true)
+            .addField('Tag discord', member.user.tag, true)
+            .addField('ID', member.user.id, true)
+            .addField('Date de création', created, true)
+            .addField("Date d'arrivée", joined, true)
+            .addField("Dernière connexion", result[0].lastDate, true)
+            .addField('Roles', roles, true)
 
-    let roles = iUser.roles.array();
-
-    let icon = iUser.user.avatarURL;
-    let infoEmbed = new Discord.RichEmbed()
-    .setDescription(`Info ${iUser}`)
-    .setColor("#3ced2f")
-    .setThumbnail(icon)
-    .addField("Nom / Surnom", `${iUser.displayName}`)
-    .addField("ID", `${iUser.id}`)
-    .addField("Roles", `${roles.join(" ")}`)
-    .addField("Date de création", `${iUser.user.createdAt}`)
-    .addField("Date d'arrivée", `${iUser.joinedAt}`)
-    .addField("Channel vocal", `${iUser.voiceChannel}`);
-
-    message.channel.send(infoEmbed);
-};
-
-module.exports.help = {
-    name: "playerinfo"
-};
+            .setTimestamp();
+        message.channel.send(embed);
+    });
+}
