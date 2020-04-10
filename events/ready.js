@@ -1,7 +1,6 @@
 var mollydb = require("../js/mollydb");
 const runban = require("../commands/utils/runtempban");
-const { Worker } = require("worker_threads");
-const worker = new Worker('./commands/utils/untempban.js', { type: "module" });
+const config = require("../json/config.json")
 
 module.exports = (client) => {
     console.log("Ready to go !");
@@ -13,8 +12,16 @@ module.exports = (client) => {
         }
     })
     client.guilds.cache.find(x => x.id = '688713802333552672').members.cache.forEach(member => {
-        if (!member.roles.cache.has('689209127536164901')) {
+        if (!member.roles.cache.has(config.discord.defaultRoles.member))
             member.roles.add(member.guild.roles.cache.find(x => x.name === "Membre")).then(r => console.log(`[Start] ${member.displayName} got his member role back`));
+        if (!member.roles.cache.has(config.discord.defaultRoles.communitySpacer)) {
+            member.roles.add(member.guild.roles.cache.find(x => x.name === "==== Grade communautaire ====")).then(r => console.log(`[Start] ${member.displayName} got his community spacer role back`));
+        }
+        if (!member.roles.cache.has(config.discord.defaultRoles.plateformSpacer)) {
+            member.roles.add(member.guild.roles.cache.find(x => x.name === "======== Plateforme ========")).then(r => console.log(`[Start] ${member.displayName} got his plateform spacer role back`));
+        }
+        if (!member.roles.cache.has(config.discord.defaultRoles.classSpacer)) {
+            member.roles.add(member.guild.roles.cache.find(x => x.name === "========= Classes =========")).then(r => console.log(`[Start] ${member.displayName} got his classe spacer role back`));
         }
     })
     client.guilds.cache.find(x => x.id === '688713802333552672').fetchBans().then(bans => {

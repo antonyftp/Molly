@@ -12,7 +12,7 @@ exports.run = (bot, message, args) => {
     let date = null;
     mollydb.query(`SELECT lastConnected as lastDate FROM sys.members where discordID = ${message.member.id}`, function (err, result) {
         const embed = new Discord.MessageEmbed()
-            .setDescription(`Info <@${member.user.id}>`)
+            .setTitle(`Info ${member.user.username}`)
             .setFooter(member.displayName, member.user.displayAvatarURL())
             .setThumbnail(member.user.displayAvatarURL())
             .setColor(member.displayHexColor === "#000000" ? "#ffffff" : member.displayHexColor)

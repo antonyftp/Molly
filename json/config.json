@@ -13,6 +13,17 @@
             "tryhard" : "689157378226257965",
             "deepdive" : "689157435071528990",
             "stream" : "689588438961487901"
+        },
+        "defaultRoles": {
+            "member": "689209127536164901",
+            "communitySpacer": "697893645252165632",
+            "classSpacer": "697892236087787591",
+            "plateformSpacer": "697893564054503557"
+        },
+        "roleReact" : {
+            "roleMessageID" : "697898965953282068",
+            "ranks" : ["PC", "Xbox", "Scout", "Driller", "Engineer", "Gunner", "Experimental", "Events"],
+            "emoji" : ["💻", "🎮", "🔦", "💣", "🔧", "🔫", "💊", "🎉"]
         }
     }
 }
