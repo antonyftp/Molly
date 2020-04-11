@@ -8,5 +8,6 @@ node_modules
 
 # JSON FILES #
 
+json/config.json
 json/token.json
 json/database.json
