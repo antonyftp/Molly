@@ -2,7 +2,6 @@ const Discord = require("discord.js");
 const config = require("../json/config");
 const mollydb = require("../js/mollydb");
 const unban = require("./utils/untempban");
-const { useWorker } = require("./utils/worker");
 
 exports.run = async (bot, message) => {
     // Find user to ban //
