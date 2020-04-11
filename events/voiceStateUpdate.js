@@ -56,7 +56,7 @@ module.exports = async (client, oldState, newState) => {
                 oldState.channel.delete();
         }
     } else if (oldState.channel && !newState.channel) {
-        if (oldState.channel.name.startsWith("Débutant") || oldState.channel.name.startsWith("Fun") || oldState.channel.name.startsWith("Try ard") || oldState.channel.name.startsWith("Deep Dive") || oldState.channel.name.startsWith("Stream")) {
+        if (oldState.channel.name.startsWith("Débutant") || oldState.channel.name.startsWith("Fun") || oldState.channel.name.startsWith("Try Hard") || oldState.channel.name.startsWith("Deep Dive") || oldState.channel.name.startsWith("Stream")) {
             if (oldState.channel.members.array().length === 0)
                 oldState.channel.delete();
         }
