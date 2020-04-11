@@ -8,9 +8,7 @@ exports.run = (bot, message) => {
         mollydb.query(`SELECT COUNT(discordID) as total from discord.members where discordID = '${member.id}'`, function (err, result) {
             if (err) throw err;
             if (result[0].total === 0) {
-                //const username = member.displayName.replace(/([\uE000-\uF8FF]|\uD83C[\uDF00-\uDFFF]|\uD83D[\uDC00-\uDDFF])/g, '').replace(`'`, '').replace('`', '').replace('"', '');
-                const username = member.user.tag;
-                mollydb.query(`INSERT INTO discord.members (discordTag, discordID) VALUES ('${username}', '${member.id}')`, function (err) {
+                mollydb.query(`INSERT INTO discord.members (discordID) VALUES ('${member.id}')`, function (err) {
                     if (err) throw err;
                     console.log(`[SYNC BDD] ${member.displayName} registered in database`);
                 });
