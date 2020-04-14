@@ -34,19 +34,19 @@ module.exports = async (client, oldState, newState) => {
         });
         switch (newState.channel.id) {
             case config.discord.autochannels.beginner:
-                await utils.createBeginner(oldState, newState);
+                utils.createBeginner(oldState, newState);
                 break;
             case config.discord.autochannels.fun:
-                await utils.createFun(oldState, newState);
+                utils.createFun(oldState, newState);
                 break;
             case config.discord.autochannels.tryhard:
-                await utils.createTryHard(oldState, newState);
+                utils.createTryHard(oldState, newState);
                 break;
             case config.discord.autochannels.deepdive:
-                await utils.createDeepDive(oldState, newState);
+                utils.createDeepDive(oldState, newState);
                 break;
             case config.discord.autochannels.stream:
-                await utils.createStream(oldState, newState);
+                utils.createStream(oldState, newState);
                 break;
             default:
                 break;
