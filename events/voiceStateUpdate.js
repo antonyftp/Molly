@@ -10,19 +10,19 @@ module.exports = async (client, oldState, newState) => {
         });
         switch (newState.channel.id) {
             case config.discord.autochannels.beginner:
-                 utils.createBeginner(oldState, newState);
+                 utils.createBeginner(newState);
                 break;
             case config.discord.autochannels.fun:
-                utils.createFun(oldState, newState);
+                utils.createFun(newState);
                 break;
             case config.discord.autochannels.tryhard:
-                utils.createTryHard(oldState, newState);
+                utils.createTryHard(newState);
                 break;
             case config.discord.autochannels.deepdive:
-                utils.createDeepDive(oldState, newState);
+                utils.createDeepDive(newState);
                 break;
             case config.discord.autochannels.stream:
-                utils.createStream(oldState, newState);
+                utils.createStream(newState);
                 break;
             default:
                 break;
@@ -34,31 +34,31 @@ module.exports = async (client, oldState, newState) => {
         });
         switch (newState.channel.id) {
             case config.discord.autochannels.beginner:
-                utils.createBeginner(oldState, newState);
+                utils.createBeginner(newState);
                 break;
             case config.discord.autochannels.fun:
-                utils.createFun(oldState, newState);
+                utils.createFun(newState);
                 break;
             case config.discord.autochannels.tryhard:
-                utils.createTryHard(oldState, newState);
+                utils.createTryHard(newState);
                 break;
             case config.discord.autochannels.deepdive:
-                utils.createDeepDive(oldState, newState);
+                utils.createDeepDive(newState);
                 break;
             case config.discord.autochannels.stream:
-                utils.createStream(oldState, newState);
+                utils.createStream(newState);
                 break;
             default:
                 break;
         }
         if (oldState.channel.name.startsWith("Débutant") || oldState.channel.name.startsWith("Fun") || oldState.channel.name.startsWith("Try Hard") || oldState.channel.name.startsWith("Deep Dive") || oldState.channel.name.startsWith("Stream")) {
             if (oldState.channel.members.array().length === 0)
-                oldState.channel.delete();
+                oldState.channel.delete().then(`${oldState.member.displayName} channel deleted`);
         }
     } else if (oldState.channel && !newState.channel) {
         if (oldState.channel.name.startsWith("Débutant") || oldState.channel.name.startsWith("Fun") || oldState.channel.name.startsWith("Try Hard") || oldState.channel.name.startsWith("Deep Dive") || oldState.channel.name.startsWith("Stream")) {
             if (oldState.channel.members.array().length === 0)
-                oldState.channel.delete();
+                oldState.channel.delete().then(`${oldState.member.displayName} channel deleted`);
         }
     } else
         console.log("T'as niqué la matrice 😮");

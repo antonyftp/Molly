@@ -28,7 +28,7 @@ module.exports = (client) => {
         bans.array().forEach(banuser => {
             mollydb.query(`SELECT COUNT(*) as total from discord.members where discordID = ${banuser.user.id} and isBan = 1 and unbanTimestamp <> 0`, function (err, result) {
                 if (err) throw err;
-                if (result[0].total == 1) {
+                if (result[0].total === 1) {
                     console.log(`[START] Unban procedure restarted for ${banuser.user.username}`);
                     runban.runtempban(banuser, client);
                 }

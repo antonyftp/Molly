@@ -42,7 +42,7 @@ exports.run = async (bot, message) => {
     console.log(`${tbUser.displayName} has been tempbanned from the discord for a duration of ${timeban} days !`);
 
     message.delete();
-    await tbanchannel.send(tbanEmbed);
+    tbanchannel.send(tbanEmbed);
 
    unban.untempban(tbUser);
 };
