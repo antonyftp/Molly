@@ -5,8 +5,6 @@ const token     = require("../json/token");
 const mollydb   = require("./mollydb");
 const bot       = new Discord.Client();
 
-module.exports = bot;
-
 mollydb.connect(function(err) {
     if (err) throw err;
     console.log("Connected to database !");
