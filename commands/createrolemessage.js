@@ -1,6 +1,5 @@
 const Discord = require("discord.js");
 const config = require("../json/config.json");
-const fs = require("fs");
 
 exports.run = (bot, message) => {
     if (!message.member.hasPermission("ADMINISTRATOR")) return message.channel.send("Cette commande est reservée aux administrateurs");

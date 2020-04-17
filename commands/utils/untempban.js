@@ -1,6 +1,5 @@
 const mollydb = require("../../js/mollydb");
 
-
 module.exports = {
     untempban(tbUser) {
         let time = Date.now();
