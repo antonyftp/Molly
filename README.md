@@ -1,3 +1,5 @@
+# ⚠️ OUTDATED PROJECT ⚠️
+
 # Molly
 
 Molly is a discord bot created exclusively for the discord server [Deep Rock Galactic France](https://discord.gg/TBxaXEC).
